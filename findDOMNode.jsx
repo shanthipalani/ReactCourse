@@ -8,7 +8,7 @@ class App extends React.Component {
     };
     findDomNodeHandler() {
         var myDiv = document.getElementById('myDiv');
-        ReactDOM.findDOMNode(myDiv).style.color = 'green';
+        ReactDOM.findDOMNode(myDiv).style.color = 'red';
     }
     render() {
         return (

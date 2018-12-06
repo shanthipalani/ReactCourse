@@ -1,21 +1,25 @@
-import React from 'react';
+import React,{Component} from 'react';
 
-class App extends React.Component {
+class App extends Component {
     constructor() {
         super();
 
         this.state = {
             data: []
         }
-
         this.setStateHandler = this.setStateHandler.bind(this);
     };
+
     setStateHandler() {
-        var item = "setState..."
+        var item = "setState...";
+        var item1 = "item 1";
         var myArray = this.state.data.slice();
         myArray.push(item);
+        myArray.push(item1);
+        console.log(myArray);
         this.setState({data: myArray})
     };
+
     render() {
         return (
             <div>
