@@ -7,6 +7,9 @@ function App() {
                 <div>
                     <ul>
                         <li>
+                            <Link to="/test" >Test</Link>
+                        </li>
+                        <li>
                             <Link to="/">Home</Link>
                         </li>
                         <li>
@@ -20,11 +23,32 @@ function App() {
                     <hr />
 
                     <Route exact path="/" component={Home} />
+                    <Route exact path="/test" component={MyComponent} />
                     <Route path="/about" component={About} />
                     <Route path="/topics" component={Topics} />
                 </div>
             </Router>
     );
+}
+
+function createMarkup() {
+    var value = "Shanthi";
+    return {__html: '<div>Shanthi </div>' +
+        '<h1>Testing page</h1>'
+        +'<h2>'+value+'</h2>'
+    };
+}
+
+function createMarkupSimple() {
+    return {__html: 'First &middot; Second'};
+}
+
+function MyComponent() {
+    return (<div>
+            <div dangerouslySetInnerHTML={createMarkupSimple()} />
+                <div dangerouslySetInnerHTML={createMarkup()} />
+        </div>
+        );
 }
 
 function Home() {
