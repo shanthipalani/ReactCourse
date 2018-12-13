@@ -23,7 +23,6 @@ class App extends React.Component {
             fields:fields ,
             errors: errors
         });
-
     }
 
     submituserRegistrationForm(e) {
