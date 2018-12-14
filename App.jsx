@@ -1,60 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addTodo } from './actions/actions'
 
-class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            data:
-                [
-                    {
-                        "id":1,
-                        "name":"Foo",
-                        "age":"20"
-                    },
-                    {
-                        "id":2,
-                        "name":"Bar",
-                        "age":"30"
-                    },
-                    {
-                        "id":3,
-                        "name":"Baz",
-                        "age":"40"
-                    }
-                ]
-        }
-    }
+import AddTodo from './components/AddTodo.js'
+import TodoList from './components/TodoList.js'
+
+class App extends Component {
     render() {
+        const { dispatch, visibleTodos } = this.props;
+
         return (
-            <div>
-                <Header/>
-                <table className="table">
-                    <tbody>
-                    {this.state.data.map((person, i) => <TableRow key={i} data = {person} />)}
-                    </tbody>
-                </table>
-            </div>
-        );
+                <div>
+                    <AddTodo onAddClick = {text =>dispatch(addTodo(text))} />
+                    <TodoList todos = {visibleTodos}/>
+                </div>
+        )
     }
 }
-class Header extends React.Component {
-    render() {
-        return (
-            <div>
-                <h1>Header</h1>
-            </div>
-        );
+function select(state) {
+    return {
+        visibleTodos: state.todos
     }
 }
-class TableRow extends React.Component {
-    render() {
-        return (
-            <tr>
-                <td>{this.props.data.id}</td>
-                <td>{this.props.data.name}</td>
-                <td>{this.props.data.age}</td>
-            </tr>
-        );
-    }
-}
-export default App;
+export default connect(select)(App);
